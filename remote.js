@@ -1,8 +1,12 @@
 Jobs = new Mongo.Collection("jobs");
 
+Jobs.initEasySearch(['title', 'description', 'type', 'where'], {
+  'limit': 50
+});
+
 if (Meteor.isClient) {
-  Template.body.helpers({
-    jobs: Jobs.find({hidden: false}, {sort: {posted: -1}})
+  Template.registerHelper('formatDate', function(date) {
+    return moment(date).format('MM-DD-YYYY');
   });
   Template.job.events({
     "click .remove": function () {
@@ -44,7 +48,6 @@ if (Meteor.isServer) {
                         company: false,
                         type: false,
                         description: false,
-                        posted: false,
                         where: false,
                         hidden: false
                       };
@@ -62,10 +65,6 @@ if (Meteor.isServer) {
                           }
                           var selector = board.rules[rule].substr(position);
                           insert[rule] = $(selector, which_doc).text();
-                          if (rule == 'posted') {
-                            var date = insert[rule];
-                            insert[rule] = new Date(moment(date).format("'MMMM Do YYYY, h:mm:ss a"));
-                          }
                         }
                       }
                       Jobs.insert(insert);

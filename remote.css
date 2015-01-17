@@ -1,25 +1,42 @@
 @import "bower_components/normalize.css/normalize.css";
+@import "//code.cdn.mozilla.net/fonts/fira.css";
 
 body {
-  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Fira Mono", monospace;
   font-size: 16px;
   line-height: 1.5;
-  font-weight: 300;
   color: #444;
 }
 
 h1, h2, h3 {
-  font-weight: 300;
+  font-weight: 400;
+}
+::-webkit-input-placeholder {
+  color: #81C784;
+}
+:-moz-placeholder {
+  color: #81C784;
+}
+::-moz-placeholder {
+  color: #81C784;
+}
+:-ms-input-placeholder {
+  color: #81C784;
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #388E3C;
   color: white;
   padding: 20px;
 }
-
-.content p {
-  padding: 20px;
+header input {
+  border-width: 0;
+  background-color: transparent;
+  outline: none;
 }
 
 a {
@@ -31,22 +48,29 @@ a:hover {
   color: #000;
 }
 
+.content {
+  margin-top: 64px;
+}
+.content p {
+  padding: 20px;
+}
+
 .jobs {
   width: 100%;
-  background-color: #F6F6F6;
 }
 .jobs th {
   padding: 15px 20px;
   text-align: left;
-  font-weight: 300;
-  color: #666;
+  font-weight: 400;
+  color: #999;
 }
 .jobs td {
   padding: 15px 20px;
   transition: all 0.1s ease-in-out;
 }
+.jobs thead th,
 .jobs tr:nth-child(2n) {
-  background-color: #FFF;
+  background-color: #F6F6F6;
 }
 .jobs tr:hover td {
   color: #FFF;
@@ -60,7 +84,6 @@ a:hover {
   background-color: #388E3C;
   text-decoration: none;
   padding: 0 5px;
-  border-radius: 2px;
 }
 .jobs a.remove:hover {
   background-color: #000;

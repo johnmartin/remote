@@ -9,9 +9,22 @@
       "title": "{entry} a .role h3",
       "company": "{entry} a .role h4",
       "type": "{entry} a .meta .type",
-      "posted": "{page} #leader .date",
       "where": "{page} #location span",
       "description": "{page} #description"
+    }
+  },
+  {
+    "site": "Jobs Remotely",
+    "base_url": "",
+    "url": "https://jobsremotely.com/remote-jobs/",
+    "rules": {
+      "entries": ".job_listings .job_listing",
+      "url": "> a",
+      "title": "{entry} h3",
+      "company": "{entry} .company",
+      "type": "{entry} .meta .job-type",
+      "where": "{page} .location",
+      "description": "{page} .job_description .text"
     }
   }
 ]

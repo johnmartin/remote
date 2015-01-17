@@ -4,27 +4,38 @@
 
 <body>
   <header>
-    <span class="logo">&#9650; Remote</span>
+    Remote
+    &rarr;
+    {{> esInput index="jobs" placeholder="Search jobs..." }}
   </header>
   <div class="content">
-    {{#if jobs}}
+    {{#ifEsInputIsEmpty index="jobs"}}
+      <!-- Search... -->
+    {{else}}
       <table class="jobs">
         <thead>
           <tr>
             <th>Company / Job title</th>
-            <th>Date posted</th>
-            <th>Where</th>
             <th>Type</th>
+            <th>Where</th>
+            <th>Date</th>
             <th></th>
           </tr>
         </thead>
-        {{#each jobs}}
-          {{> job}}
-        {{/each}}
+        <tbody>
+          {{#ifEsIsSearching index="jobs"}}
+            <tr><td colspan="5">Loading...</td></tr>
+          {{else}}
+            {{#esEach index="jobs"}}
+              {{> job}}
+            {{/esEach}}
+          {{/ifEsIsSearching}}
+          {{#ifEsHasNoResults index="jobs"}}
+            <tr><td colspan="5">No jobs found</td></tr>
+          {{/ifEsHasNoResults}}
+        </tbody>
       </table>
-    {{else}}
-      <p>No jobs yet...</p>
-    {{/if}}
+    {{/ifEsInputIsEmpty}}
   </div>
 </body>
 
@@ -34,9 +45,17 @@
       <a href="{{url}}" target="_blank">{{company}}</a><br>
       {{title}}
     </td>
-    <td>{{posted}}</td>
-    <td>{{where}}</td>
     <td>{{type}}</td>
+    <td>{{where}}</td>
+    <td>{{formatDate created}}</td>
     <td><a href="#" class="remove">&times;</a></td>
   </tr>
+</template>
+
+<template name="setup">
+  <form class="setup">
+    <label>What do you want to filter by?</label>
+    <input type="text" name="filter" placeholder="UX, CSS, Developer, etc.">
+    <button type="submit" class="go">Go</button>
+  </form>
 </template>
