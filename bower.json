@@ -1,0 +1,7 @@
+{
+  "name": "remote",
+  "private": true,
+  "dependencies": {
+    "normalize.css": "3.*"
+  }
+}

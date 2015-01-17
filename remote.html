@@ -1,0 +1,42 @@
+<head>
+  <title>Remote</title>
+</head>
+
+<body>
+  <header>
+    <span class="logo">&#9650; Remote</span>
+  </header>
+  <div class="content">
+    {{#if jobs}}
+      <table class="jobs">
+        <thead>
+          <tr>
+            <th>Company / Job title</th>
+            <th>Date posted</th>
+            <th>Where</th>
+            <th>Type</th>
+            <th></th>
+          </tr>
+        </thead>
+        {{#each jobs}}
+          {{> job}}
+        {{/each}}
+      </table>
+    {{else}}
+      <p>No jobs yet...</p>
+    {{/if}}
+  </div>
+</body>
+
+<template name="job">
+  <tr>
+    <td>
+      <a href="{{url}}" target="_blank">{{company}}</a><br>
+      {{title}}
+    </td>
+    <td>{{posted}}</td>
+    <td>{{where}}</td>
+    <td>{{type}}</td>
+    <td><a href="#" class="remove">&times;</a></td>
+  </tr>
+</template>

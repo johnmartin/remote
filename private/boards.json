@@ -1,0 +1,17 @@
+[
+  {
+    "site": "Authentic Jobs",
+    "base_url": "http://www.authenticjobs.com",
+    "url": "http://www.authenticjobs.com/#onlyremote=1",
+    "rules": {
+      "entries": "#listings > li",
+      "url": "a",
+      "title": "{entry} a .role h3",
+      "company": "{entry} a .role h4",
+      "type": "{entry} a .meta .type",
+      "posted": "{page} #leader .date",
+      "where": "{page} #location span",
+      "description": "{page} #description"
+    }
+  }
+]

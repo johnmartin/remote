@@ -1,0 +1,67 @@
+@import "bower_components/normalize.css/normalize.css";
+
+body {
+  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #444;
+}
+
+h1, h2, h3 {
+  font-weight: 300;
+}
+
+header {
+  background-color: #388E3C;
+  color: white;
+  padding: 20px;
+}
+
+.content p {
+  padding: 20px;
+}
+
+a {
+  color: #388E3C;
+  font-weight: 500;
+  transition: all 0.1s ease-in-out;
+}
+a:hover {
+  color: #000;
+}
+
+.jobs {
+  width: 100%;
+  background-color: #F6F6F6;
+}
+.jobs th {
+  padding: 15px 20px;
+  text-align: left;
+  font-weight: 300;
+  color: #666;
+}
+.jobs td {
+  padding: 15px 20px;
+  transition: all 0.1s ease-in-out;
+}
+.jobs tr:nth-child(2n) {
+  background-color: #FFF;
+}
+.jobs tr:hover td {
+  color: #FFF;
+  background-color: #66BB6A;
+}
+.jobs tr:hover td a {
+  color: #FFF;
+}
+.jobs a.remove {
+  color: #FFF;
+  background-color: #388E3C;
+  text-decoration: none;
+  padding: 0 5px;
+  border-radius: 2px;
+}
+.jobs a.remove:hover {
+  background-color: #000;
+}
