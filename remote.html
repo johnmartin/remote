@@ -3,46 +3,50 @@
 </head>
 
 <body>
-  <header>
-    Remote
-    &rarr;
-    {{> esInput index="jobs" placeholder="Search jobs..." }}
-  </header>
-  <div class="content">
-    {{#ifEsInputIsEmpty index="jobs"}}
-      <!-- Search... -->
-    {{else}}
-      <table class="jobs">
-        <thead>
-          <tr>
-            <th>Company / Job title</th>
-            <th>Type</th>
-            <th>Where</th>
-            <th>Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#ifEsIsSearching index="jobs"}}
-            <tr><td colspan="5">Loading...</td></tr>
-          {{else}}
-            {{#esEach index="jobs"}}
-              {{> job}}
-            {{/esEach}}
-          {{/ifEsIsSearching}}
-          {{#ifEsHasNoResults index="jobs"}}
-            <tr><td colspan="5">No jobs found</td></tr>
-          {{/ifEsHasNoResults}}
-        </tbody>
-      </table>
-    {{/ifEsInputIsEmpty}}
-  </div>
 </body>
 
-<template name="job">
-  <tr>
+<template name="Home">
+  <header>Remote</header>
+  <div class="content">
+    <p class="intro">
+      I am:
+      <a href="/what/Developer">Developer</a>
+      /
+      <a href="/what/Designer">Designer</a>
+    </p>
+  </div>
+</template>
+
+<template name="Jobs">
+  <header><a href="/">Remote</a> &rarr; {{query}}</header>
+  <div class="content">
+    <table class="jobs">
+      <thead>
+        <tr>
+          <th>Company / Job title</th>
+          <th>Type</th>
+          <th>Where</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{# if jobs}}
+          {{#each jobs}}
+            {{> Job}}
+          {{/each}}
+        {{else}}
+          <tr class="no-jobs"><td colspan="5">No jobs :(</td></tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template name="Job">
+  <tr class="{{isVisited visited}}">
     <td>
-      <a href="{{url}}" target="_blank">{{company}}</a><br>
+      <a href="/click/{{_id}}" target="_blank">{{company}}</a><br>
       {{title}}
     </td>
     <td>{{type}}</td>
@@ -50,12 +54,4 @@
     <td>{{formatDate created}}</td>
     <td><a href="#" class="remove">&times;</a></td>
   </tr>
-</template>
-
-<template name="setup">
-  <form class="setup">
-    <label>What do you want to filter by?</label>
-    <input type="text" name="filter" placeholder="UX, CSS, Developer, etc.">
-    <button type="submit" class="go">Go</button>
-  </form>
 </template>

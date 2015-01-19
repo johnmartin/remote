@@ -10,4 +10,5 @@ insecure
 http
 mrt:moment
 jquery
-matteodem:easy-search
+mrt:cron
+iron:router

@@ -26,5 +26,19 @@
       "where": "{page} .location",
       "description": "{page} .job_description .text"
     }
+  },
+  {
+    "site": "nomadjobs.io",
+    "base_url": "",
+    "url": "http://nomadjobs.io/",
+    "rules": {
+      "entries": "#jobsboard .job",
+      "url": "> a",
+      "title": "{entry} .position",
+      "company": "{entry} .company",
+      "type": false,
+      "where": false,
+      "description": false
+    }
   }
 ]

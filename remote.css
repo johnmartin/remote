@@ -1,4 +1,4 @@
-@import "bower_components/normalize.css/normalize.css";
+@import "//necolas.github.io/normalize.css/3.0.2/normalize.css";
 @import "//code.cdn.mozilla.net/fonts/fira.css";
 
 body {
@@ -24,6 +24,15 @@ h1, h2, h3 {
   color: #81C784;
 }
 
+a {
+  color: #388E3C;
+  font-weight: 500;
+  transition: all 0.1s ease-in-out;
+}
+a:hover {
+  color: #000;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -38,14 +47,8 @@ header input {
   background-color: transparent;
   outline: none;
 }
-
-a {
-  color: #388E3C;
-  font-weight: 500;
-  transition: all 0.1s ease-in-out;
-}
-a:hover {
-  color: #000;
+header a {
+  color: white;
 }
 
 .content {
@@ -79,12 +82,15 @@ a:hover {
 .jobs tr:hover td a {
   color: #FFF;
 }
-.jobs a.remove {
+.jobs tr.visited td {
+  text-decoration: line-through;
+}
+.jobs tr td a.remove {
   color: #FFF;
   background-color: #388E3C;
-  text-decoration: none;
+  text-decoration: inherit;
   padding: 0 5px;
 }
-.jobs a.remove:hover {
+.jobs tr td a.remove:hover {
   background-color: #000;
 }
