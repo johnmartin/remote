@@ -6,7 +6,7 @@ Just [Meteor](http://meteor.com/). That's it.
 
 ## Installation
     git clone git@github.com:johnmartin/remote.git
-    cd remote
+    cd remote/.meteor && npm i . && cd ..
     meteor
 
 ## Why?
