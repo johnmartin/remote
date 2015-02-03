@@ -40,5 +40,19 @@
       "where": false,
       "description": false
     }
+  },
+  {
+    "site": "We Work Remotely",
+    "base_url": "https://weworkremotely.com",
+    "url": "https://weworkremotely.com/categories/1/jobs",
+    "rules": {
+      "entries": "#category-1 article li",
+      "url": "> a ",
+      "title": "{entry} .title",
+      "company": "{entry} .company",
+      "type": false,
+      "where": false,
+      "description": false
+    }
   }
 ]
