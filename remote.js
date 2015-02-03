@@ -20,7 +20,7 @@ Router.route('/what/:q', function() {
           { description: new RegExp(q) },
           { company: new RegExp(q) }
         ];
-        return Jobs.find({ $or: search_or });
+        return Jobs.find({ $or: search_or, hidden: false });
       },
       "query": this.params.q
     }
