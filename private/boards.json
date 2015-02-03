@@ -32,8 +32,8 @@
     "base_url": "",
     "url": "http://nomadjobs.io/",
     "rules": {
-      "entries": "#jobsboard .job",
-      "url": "> a",
+      "entries": "#jobsboard [data-search]",
+      "url": ".position a",
       "title": "{entry} .position",
       "company": "{entry} .company",
       "type": false,

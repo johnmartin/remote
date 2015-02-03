@@ -16,43 +16,47 @@ function UpdateJobs() {
             if (url) {
               if (url.substr(0, 7) == 'file://') {
                 url = board.base_url+url.substr(7);
+              } else if (url.substr(0, 6) == 'about:') {
+                url = board.base_url+url.substr(6);
               }
-              var check = Jobs.findOne({ url: url });
-              if (!check) {
-                HTTP.get(url, function (error, result) {
-                  var doc_entry = $(result.content);
-                  (function(board, me, doc_entry, url) {
-                    var insert = {
-                      created: new Date(),
-                      site: board.site,
-                      url: url,
-                      title: false,
-                      company: false,
-                      type: false,
-                      description: false,
-                      where: false,
-                      hidden: false,
-                      visited: false
-                    };
-                    for (var i in rules) {
-                      var rule = rules[i];
-                      if (board.rules[rule]) {
-                        var which_doc;
-                        var position;
-                        if (board.rules[rule].substr(0, 6) == '{page}') {
-                          which_doc = doc_entry;
-                          position = 7;
-                        } else {
-                          which_doc = me;
-                          position = 8;
+              if (url.substr(0, 4) == 'http') {
+                var check = Jobs.findOne({ url: url });
+                if (!check) {
+                  HTTP.get(url, function (error, result) {
+                    var doc_entry = $(result.content);
+                    (function(board, me, doc_entry, url) {
+                      var insert = {
+                        created: new Date(),
+                        site: board.site,
+                        url: url,
+                        title: false,
+                        company: false,
+                        type: false,
+                        description: false,
+                        where: false,
+                        hidden: false,
+                        visited: false
+                      };
+                      for (var i in rules) {
+                        var rule = rules[i];
+                        if (board.rules[rule]) {
+                          var which_doc;
+                          var position;
+                          if (board.rules[rule].substr(0, 6) == '{page}') {
+                            which_doc = doc_entry;
+                            position = 7;
+                          } else {
+                            which_doc = me;
+                            position = 8;
+                          }
+                          var selector = board.rules[rule].substr(position);
+                          insert[rule] = $(selector, which_doc).text();
                         }
-                        var selector = board.rules[rule].substr(position);
-                        insert[rule] = $(selector, which_doc).text();
                       }
-                    }
-                    Jobs.insert(insert);
-                  })(board, me, doc_entry, url);
-                });
+                      Jobs.insert(insert);
+                    })(board, me, doc_entry, url);
+                  });
+                }
               }
             }
           });
